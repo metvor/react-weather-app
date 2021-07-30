@@ -1,0 +1,7 @@
+.App {
+border: solid black 1px;
+display: block;
+    margin: auto;
+    width: 60%;
+    padding: 5px;
+}
