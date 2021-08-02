@@ -1,6 +1,9 @@
 .Weather {
-    padding: 5px;
+    padding: 20px;
 }
-ul {
+li {
     list-style: none;
+}
+.temp {
+    font-size: 2rem;
 }

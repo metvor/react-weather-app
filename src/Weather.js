@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
+import WeatherInfo from "./WeatherInfo.js";
 
-export default function Weather() {
+export default function Weather(props) {
 
 const [ready, setReady] = useState(false);
-const [weather, setWeather] = useState({});
+const [weatherdata, setWeatherdata] = useState({});
+const [city, setCity] = useState(props.defaultCity);  
 
 function handleCitySubmit(event) {
     event.preventDefault();
 }
 function handleApi(response) {
     setReady(true);
-    setWeather({
+    setWeatherdata({
         temp: Math.round(response.data.main.temp),
         tempFeels: Math.round(response.data.main.feels_like),
         wind: Math.round(response.data.wind.speed),
@@ -21,33 +23,23 @@ function handleApi(response) {
         humidity: Math.round(response.data.main.humidity)
     })
 }
-
+function changeCity (event) {
+setCity(event.target.value);
+alert(city);
+}
 
 
 if (ready) {
     return (
         <div className="Weather">
-        <form className="searchForm" onSubmit={handleCitySubmit}>
-            <input type="search" placeholder="Enter city"></input><input type="submit" value="Search"></input>
+            <form className="searchForm" onSubmit={handleCitySubmit}>
+            <input type="search" placeholder="Enter city" onChange={changeCity}></input><input type="submit" value="Search"></input>
         </form>
         <br/>
-    <h1>
-        London
-    </h1>
-    <ul>
-        <li>Sunday 20:00</li>
-        <li>{weather.description}</li>
-        <li>Temperature: {weather.temp}°C</li>
-        <li>Feels like: {weather.tempFeels}°C</li>
-        <li>Wind speed: {weather.wind}m/s</li>
-        <li>Humidity: {weather.humidity}%</li>
-    </ul>
-
-
-    </div>
+        <WeatherInfo data={weatherdata}/>
+        </div>
     );
 } else {
-    let city = "Mexico City";
     const apiKey = "de31873c66b8933cfbbc1e0df416d91d";
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleApi);
