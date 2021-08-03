@@ -4,13 +4,13 @@ export default function WeatherInfo(props) {
     return (
 <div className="WeatherInfo">
         
-    <h1>
-        {props.defaultCity}
+    <h1 className="text-capitalize">
+        {props.data.city}
     </h1>
         <div className="row">
             <div className="col-6">
         <li>Sunday 20:00</li>
-        <li>{props.data.description}</li>
+        <li className="text-capitalize">{props.data.description}</li>
         <li className="temp">{props.data.temp}°C</li>
         <li>{props.data.icon}</li>
         </div>
@@ -20,7 +20,7 @@ export default function WeatherInfo(props) {
         <li>Humidity: {props.data.humidity}%</li>
         </div>
 
+        </div>
 </div>
-    </div>
     );
 }
