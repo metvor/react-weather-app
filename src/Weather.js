@@ -15,10 +15,10 @@ setCity(event.target.value);
 
 function handleCitySubmit(event) {
     event.preventDefault();
+    apiSearch();
 }
 
 function handleApi(response) {
-    setReady(true);
     setWeatherdata({
         temp: Math.round(response.data.main.temp),
         tempFeels: Math.round(response.data.main.feels_like),
@@ -27,6 +27,7 @@ function handleApi(response) {
         icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
         humidity: Math.round(response.data.main.humidity)
     });
+    setReady(true);
 }
 
 function apiSearch() {
@@ -38,7 +39,7 @@ function apiSearch() {
 if (ready) {
     return (
         <div className="Weather">
-            <form className="searchForm" onSubmit={handleCitySubmit}>
+        <form className="searchForm" onSubmit={handleCitySubmit}>
             <input type="search" placeholder="Enter city" onChange={changeCity} autoFocus="on"></input><input type="submit" value="Search"></input>
         </form>
         <br/>
