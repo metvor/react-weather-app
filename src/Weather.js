@@ -5,22 +5,13 @@ import WeatherInfo from "./WeatherInfo";
 
 export default function Weather(props) {
 
-const [ready, setReady] = useState(false);
 const [weatherdata, setWeatherdata] = useState({});
+const [ready, setReady] = useState(false);
 const [city, setCity] = useState(props.defaultCity);  
-
-function changeCity(event) {
-setCity(event.target.value);
-}
-
-function handleCitySubmit(event) {
-    event.preventDefault();
-    apiSearch();
-}
 
 function handleApi(response) {
     setWeatherdata({
-        temp: Math.round(response.data.main.temp),
+        temp: response.data.main.temp,
         tempFeels: Math.round(response.data.main.feels_like),
         wind: Math.round(response.data.wind.speed),
         description: response.data.weather[0].description,
@@ -30,11 +21,23 @@ function handleApi(response) {
     setReady(true);
 }
 
+function handleCitySubmit(event) {
+    event.preventDefault();
+    apiSearch();
+}
+
+function changeCity(event) {
+setCity(event.target.value);
+}
+
 function apiSearch() {
     const apiKey = "de31873c66b8933cfbbc1e0df416d91d";
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleApi);
 }
+
+
+
 
 if (ready) {
     return (
