@@ -11,12 +11,13 @@ const [city, setCity] = useState(props.defaultCity);
 
 function handleApi(response) {
     setWeatherdata({
-        temp: response.data.main.temp,
+        temp: Math.round(response.data.main.temp),
         tempFeels: Math.round(response.data.main.feels_like),
         wind: Math.round(response.data.wind.speed),
         description: response.data.weather[0].description,
         icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
-        humidity: Math.round(response.data.main.humidity)
+        humidity: Math.round(response.data.main.humidity),
+        city: response.data.name
     });
     setReady(true);
 }

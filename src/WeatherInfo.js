@@ -9,10 +9,9 @@ export default function WeatherInfo(props) {
     </h1>
         <div className="row">
             <div className="col-8">
-        <li>I said hey! What's going on?</li>
         <li className="text-capitalize">{props.data.description}</li>
         <li className="temp">{props.data.temp}°C</li>
-        <li>{props.data.icon}</li>
+        <li><img src={props.data.icon} alt="weather icon" /></li>
         </div>
             <div className="col-4">
         <li>Feels like: {props.data.tempFeels}°C</li>
