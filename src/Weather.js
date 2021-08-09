@@ -10,6 +10,7 @@ const [ready, setReady] = useState(false);
 const [city, setCity] = useState(props.defaultCity);  
 
 function handleApi(response) {
+    console.log(response.data);
     setWeatherdata({
         temp: Math.round(response.data.main.temp),
         tempFeels: Math.round(response.data.main.feels_like),
@@ -18,7 +19,7 @@ function handleApi(response) {
         icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
         humidity: Math.round(response.data.main.humidity),
         city: response.data.name,
-        date: new Date(response.data.dt * 1000)
+        date: new Date((response.data.dt + response.data.timezone - 3600) * 1000)
     });
     setReady(true);
 }
