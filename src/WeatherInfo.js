@@ -1,18 +1,7 @@
 import React from "react";
+import FormattedDate from "./FormattedDate";
 
 export default function WeatherInfo(props) {
-
-let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-let day = days[props.data.date.getDay()];
-let hour = props.data.date.getHours();
-let min = props.data.date.getMinutes();
-if (hour < 10) {
-   hour = `0${hour}`;
-  }
-if (min < 10) {
-    min = `0${min}`;
-  }
 
     return (
 <div className="WeatherInfo">
@@ -21,7 +10,7 @@ if (min < 10) {
     </h1>
         <div className="row">
             <div className="col-8">
-        <li>{day} {hour}:{min}</li>
+        <li><FormattedDate date={props.data.date} /></li>
         <li className="text-capitalize">{props.data.description}</li>
         <li className="temp">{props.data.temp}°C</li>
         <li><img src={props.data.icon} alt="weather icon" /></li>
