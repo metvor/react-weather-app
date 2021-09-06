@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
 import WeatherInfo from "./WeatherInfo";
+import Forecast from "./Forecast";
 
 export default function Weather(props) {
 
@@ -10,8 +11,10 @@ const [ready, setReady] = useState(false);
 const [city, setCity] = useState(props.defaultCity);  
 
 function handleApi(response) {
-    console.log(response.data);
+    console.log(response.data)
     setWeatherdata({
+        lon: response.data.coord.lon,
+        lat: response.data.coord.lat,
         temp: Math.round(response.data.main.temp),
         tempFeels: Math.round(response.data.main.feels_like),
         wind: Math.round(response.data.wind.speed),
@@ -42,7 +45,7 @@ function apiSearch() {
 
 
 
-if (ready) {
+// if (ready) {
     return (
         <div className="Weather">
         <form className="searchForm" onSubmit={handleCitySubmit}>
@@ -50,10 +53,11 @@ if (ready) {
         </form>
         <br/>
         <WeatherInfo data={weatherdata}/>
+        <Forecast info={weatherdata}/>
         </div>
     );
-} else {
-    apiSearch();
-    return "Loading";
-}
+// } else {
+//     apiSearch();
+//     return "Loading";
+// }
 }
