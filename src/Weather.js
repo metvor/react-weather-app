@@ -13,13 +13,12 @@ const [city, setCity] = useState(props.defaultCity);
 function handleApi(response) {
     console.log(response.data)
     setWeatherdata({
-        lon: response.data.coord.lon,
-        lat: response.data.coord.lat,
+        coordinates: response.data.coord,
         temp: Math.round(response.data.main.temp),
         tempFeels: Math.round(response.data.main.feels_like),
         wind: Math.round(response.data.wind.speed),
         description: response.data.weather[0].description,
-        icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+        icon: response.data.weather[0].icon,
         humidity: Math.round(response.data.main.humidity),
         city: response.data.name,
         date: new Date((response.data.dt + response.data.timezone - 3600) * 1000)
@@ -45,7 +44,7 @@ function apiSearch() {
 
 
 
-// if (ready) {
+if (ready) {
     return (
         <div className="Weather">
         <form className="searchForm" onSubmit={handleCitySubmit}>
@@ -53,11 +52,11 @@ function apiSearch() {
         </form>
         <br/>
         <WeatherInfo data={weatherdata}/>
-        <Forecast info={weatherdata}/>
+        <Forecast coordinates={weatherdata.coordinates}/>
         </div>
     );
-// } else {
-//     apiSearch();
-//     return "Loading";
-// }
+} else {
+    apiSearch();
+    return "Loading";
+}
 }
