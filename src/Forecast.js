@@ -18,20 +18,21 @@ function handleForecast(response) {
 
 if (ready) {
     return (
-      <div className="Forecast">
-      <div className="row">
-		{forecast.map(function (dailyForecast, index) {
-            if (index < 4) {
-                return (  
-                    <div className="col" key={index}>
-                <ForecastDaily data={dailyForecast}/>
-                </div>
- );
-}
-})}
-</div>
-</div>
-);    
+        <div className="Forecast">
+          <div className="row">
+            {forecast.map(function (dailyForecast, index) {
+              if (index < 5) {
+                return (
+                  <div className="col" key={index}>
+                    <ForecastDaily data={dailyForecast} />
+                  </div>
+                );
+              }
+              return null;
+            })}
+          </div>
+        </div>
+      );
 } else {
     let apiKey = "de31873c66b8933cfbbc1e0df416d91d";
     let lon = props.coordinates.lon;

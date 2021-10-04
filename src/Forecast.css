@@ -1,3 +1,10 @@
 .forecast {
     text-align: center;
 }
+
+.maxTemp, .minTemp {
+    font-size: 16px
+}
+.minTemp {
+    color: rgb(126, 124, 124)
+}

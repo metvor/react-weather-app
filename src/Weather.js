@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Weather.css";
 import WeatherInfo from "./WeatherInfo";
@@ -9,6 +9,10 @@ export default function Weather(props) {
 const [weatherdata, setWeatherdata] = useState({});
 const [ready, setReady] = useState(false);
 const [city, setCity] = useState(props.defaultCity);  
+
+useEffect(() => {
+    setReady(false);
+}, [props.coordinates]);
 
 function handleApi(response) {
     console.log(response.data)
@@ -52,6 +56,7 @@ if (ready) {
         </form>
         <br/>
         <WeatherInfo data={weatherdata}/>
+        <br />
         <Forecast coordinates={weatherdata.coordinates}/>
         </div>
     );
