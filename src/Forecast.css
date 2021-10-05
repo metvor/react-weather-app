@@ -1,7 +1,11 @@
 .forecast {
-    text-align: center;
-}
+    display: flex;
+    align-items: center;
 
+}
+.icon {
+padding: 5px;
+}
 .maxTemp, .minTemp {
     font-size: 16px
 }

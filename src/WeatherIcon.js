@@ -1,5 +1,6 @@
 import React from "react";
 import ReactAnimatedWeather from "react-animated-weather";
+import "./Weather.css";
 
 export default function WeatherIcon(props) {
   const codeMapping = {
@@ -29,7 +30,7 @@ export default function WeatherIcon(props) {
       color="#1e1e1e"
       size={props.size}
       animate={true}
-      padding="0"
+      padding="50"
     />
   );
 }

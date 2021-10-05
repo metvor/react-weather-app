@@ -15,8 +15,11 @@ export default function WeatherInfo(props) {
             <div className="col-8">
         <li><FormattedDate date={props.data.date} /></li>
         <li className="text-capitalize">{props.data.description}</li>
-        <WeatherIcon code={props.data.icon} size={52} />
-        <span><Temperature temps={props.data.temp} classname="currentTemp"/></span>
+        <div className="today-weather">
+            <div className="today-icon">
+        <WeatherIcon code={props.data.icon} size={52} /> </div>
+        <span><Temperature temps={props.data.temp} /></span>
+        </div>
         </div>
             <div className="col-4">
         <li>Feels like: {props.data.tempFeels}°C</li>
